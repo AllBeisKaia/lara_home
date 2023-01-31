@@ -1,0 +1,9 @@
+!gitkeep
+docker/data/*
+
+docker/config/nginx/*/*.conf
+
+docker/logs/nginx/*/*.log
+docker/logs/rabbitmq/*.log
+
+.env
