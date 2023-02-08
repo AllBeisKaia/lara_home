@@ -21,11 +21,14 @@ libbz2-dev \
 zlib1g-dev \
 libzip-dev
 
+#RUN apt-get install -y nodejs npm
+#RUN chown -R ${PHP_USER_ID}:${PHP_GROUP_ID} /var/www
+
 #other
 RUN pecl install redis xdebug-3.1.2 \
-    && docker-php-ext-enable redis.so \
-    && docker-php-ext-enable xdebug \
-    && docker-php-ext-install opcache
+&& docker-php-ext-enable redis.so \
+&& docker-php-ext-enable xdebug \
+&& docker-php-ext-install opcache
 
 COPY ./config/php/docker-php-ext-opcache.ini /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 
@@ -44,6 +47,8 @@ RUN docker-php-ext-install -j$(nproc) intl \
     zip bz2
 
 RUN usermod -u ${PHP_USER_ID} www-data && groupmod -g ${PHP_GROUP_ID} www-data
+
+WORKDIR /var/www/html
 
 USER "${PHP_USER_ID}:${PHP_GROUP_ID}"
 

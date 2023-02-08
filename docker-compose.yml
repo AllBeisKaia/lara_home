@@ -93,6 +93,8 @@ services:
     volumes:
       - ./docker/data/rabbitmq:/var/lib/rabbitmq/
       - ./docker/logs/rabbitmq:/var/log/rabbitmq/
+    user: rabbitmq:rabbitmq
+    
 
 
     
